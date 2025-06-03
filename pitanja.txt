@@ -1,0 +1,1 @@
+/api/games/history je endpoint koji gadja casino, a njega gadja front samo kada se state igre promeni. Ta promena se nece desavati vise od 10 puta u 1 sekundi

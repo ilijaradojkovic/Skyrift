@@ -1,0 +1,76 @@
+game:
+  gameToGenerate: 10
+
+server:
+  port: ${PORT:8000}
+
+
+resilience4j:
+  retry:
+    instances:
+      gameController:
+        maxAttempts: 5  # Maximum number of attempts
+        waitDuration: 500ms  # Wait duration between attempts
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException  # Exception to retry on
+
+
+  rate-limiter:
+    instances:
+      gameController:
+        limitForPeriod: 10 # The number of calls allowed in the given time period
+        limitForPeriodInMillis: 1000 # Time period in milliseconds
+        limitRefreshPeriod: 1000 # Time period for refreshing the limit
+
+cors:
+  allowed:
+    origins: ${CORS_ALLOWED_ORIGINS:http://localhost:8000,http://localhost:8080,http://localhost:5173}
+
+logging:
+  pattern:
+    level: "%5p [traceId=%X{traceId}, spanId=%X{spanId}]"
+
+
+
+
+
+
+
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:skyrift}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+  application:
+    name: skyrift
+
+
+
+  rsocket:
+    server:
+      host: ${R_SOCKET_HOST:ws://localhost:9000}
+      #      ssl:
+      #        enabled: true
+      #        key-store-type: PKCS12
+      #        key-store: C:\Users\Ilija\Downloads\RSocket\rsocket-server.p12
+      #        key-store-password: password
+      #        key-alias: rsocket
+      mapping-path: /
+      transport: websocket
+      port: ${R_SOCKET_PORT:9000}

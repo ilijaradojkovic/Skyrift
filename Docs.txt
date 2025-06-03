@@ -1,0 +1,4 @@
+Bets
+Kada se igra zavrsi betovi se cuvaju u bazu,dok igra traje betovi se cuvaju u sesiji
+*/
+
