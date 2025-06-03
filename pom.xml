@@ -8,10 +8,10 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>4bees.io</groupId>
-	<artifactId>Berzza</artifactId>
+	<groupId>ilija.com</groupId>
+	<artifactId>Skyrift</artifactId>
 	<version>0.0.1</version>
-	<name>berzza</name>
+	<name>skyrift</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -137,7 +137,7 @@
 	</dependencies>
 
 	<build>
-
+			<finalName>skyrift</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

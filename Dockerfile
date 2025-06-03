@@ -1,4 +1,4 @@
 FROM openjdk:17-jdk
-ADD target/berzza.jar berzza.jar
+ADD target/skyrift.jar skyrift.jar
 EXPOSE 8000
-ENTRYPOINT ["java", "-jar", "berzza.jar"]
+ENTRYPOINT ["java", "-jar", "skyrift.jar"]
