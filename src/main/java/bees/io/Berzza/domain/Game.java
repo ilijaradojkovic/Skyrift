@@ -26,6 +26,7 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String gamehash;
+
     @Enumerated(EnumType.STRING)
     private GameState gameState;
 
@@ -42,7 +43,7 @@ public class Game {
     private List<Double> runList;
 
     @Lob
-    @Column(name = "image", columnDefinition = "LONGBLOB")
+    @Column(name = "image", columnDefinition = "TEXT")
     private String runListJson; // Serialized runList as JSON string
 
     @CreatedDate
