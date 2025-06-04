@@ -42,7 +42,6 @@ public class Game {
     @Transient
     private List<Double> runList;
 
-    @Lob
     @Column(name = "image", columnDefinition = "TEXT")
     private String runListJson; // Serialized runList as JSON string
 
