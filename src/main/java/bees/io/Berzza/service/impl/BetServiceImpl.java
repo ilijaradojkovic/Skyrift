@@ -105,7 +105,7 @@ public class BetServiceImpl implements BetService {
             bet.setProfitBaseCurrency(profitInBaseCurrency);
             bet.setCashOutBaseCurrency(moneyInBaseCurrency);
             bet.setAlreadyCashedOut(true);
-            userService.addToBalance(bet.getUser(), moneyInBaseCurrency);
+            userService.addToBalance(bet.getUsername(), moneyInBaseCurrency);
 
             System.out.println("ALL BETS " +GlobalGameState.getGameBets());
 //            return casinoRest.cashOut(userToken, bet.getCashOut())
@@ -145,7 +145,7 @@ public class BetServiceImpl implements BetService {
 //                                    userService.update(user);
 //                                    return Mono.just(betMapper.mapToBetResponse(bet));
 //                                });
-                                userService.addToBalance(bet.getUser(), bet.getAmountBaseCurrency());
+                                userService.addToBalance(bet.getUsername(), bet.getAmountBaseCurrency());
                                 return Mono.just(betMapper.mapToBetResponse(bet));
 
                             }
@@ -163,7 +163,7 @@ public class BetServiceImpl implements BetService {
     @Override
     public List<BetResponse> getAllBetsForUser(String username, Integer size, Integer page) {
 
-        return betMapper.mapToBetResponse(betRepositry.findAllByUserOrderByTimestampDesc(username, PageRequest.of(page, size)));
+        return betMapper.mapToBetResponse(betRepositry.findAllByUsernameOrderByTimestampDesc(username, PageRequest.of(page, size)));
 
     }
 

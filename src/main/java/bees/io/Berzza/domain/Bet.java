@@ -2,7 +2,6 @@ package bees.io.Berzza.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +37,7 @@ public class Bet {
     private double autoCashOutMultiplier;
     private boolean alreadyCashedOut;
 
-    private String user;
+    private String username;
 
     private Long gameId;
 

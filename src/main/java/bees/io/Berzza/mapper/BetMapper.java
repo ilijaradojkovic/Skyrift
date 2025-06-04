@@ -6,7 +6,6 @@ import bees.io.Berzza.domain.dto.BetDTO;
 import bees.io.Berzza.domain.enums.BetType;
 import bees.io.Berzza.domain.requests.BetRequest;
 import bees.io.Berzza.domain.responses.BetResponse;
-import bees.io.Berzza.util.CurrencyUtil;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -22,7 +21,7 @@ public class BetMapper {
        return  Bet.builder()
                .id(uuid.toString())
                 .gameId(game)
-                .user(user)
+                .username(user)
                 .amountBaseCurrency(amount)
                .isAutoCashout(isAutoCashout)
                .autoCashOutMultiplier(autoCashOutMultiplier)
@@ -45,7 +44,7 @@ public class BetMapper {
        return  BetResponse.builder()
                .betId(bet.getId().toString())
                 .gameId(bet.getGameId())
-               .email(bet.getUser())
+               .email(bet.getUsername())
                .time(bet.getTimestamp())
                .autoCashOutMultiplier(bet.getAutoCashOutMultiplier())
                .amount(bet.getAmountBaseCurrency())
@@ -63,10 +62,10 @@ public class BetMapper {
     }
 
     public BetRequest mapToBetRequest(Bet bet, BetType betType, double y, double pounder) {
-        return new BetRequest(bet.getAmountBaseCurrency(),bet.getId(),bet.getMultiplier(),bet.getUser(), betType,bet.isAutoCashout(),bet.getAutoCashOutMultiplier());
+        return new BetRequest(bet.getAmountBaseCurrency(),bet.getId(),bet.getMultiplier(),bet.getUsername(), betType,bet.isAutoCashout(),bet.getAutoCashOutMultiplier());
     }
     public BetRequest mapToBetRequest(Bet bet,BetType betType,double multiplier) {
-        return new BetRequest(bet.getAmountBaseCurrency(),bet.getId(),multiplier,bet.getUser(), betType,bet.isAutoCashout(),bet.getAutoCashOutMultiplier());
+        return new BetRequest(bet.getAmountBaseCurrency(),bet.getId(),multiplier,bet.getUsername(), betType,bet.isAutoCashout(),bet.getAutoCashOutMultiplier());
     }
 
     public  List<BetDTO>  mapToBetDTO(List<Bet> allBetsForCurrentGame) {
@@ -81,7 +80,7 @@ public class BetMapper {
            return BetDTO.builder()
                    .betId(betResponse.getId())
                     .gameId(betResponse.getGameId())
-                    .userId(betResponse.getUser())
+                    .userId(betResponse.getUsername())
                     .amount(betResponse.getAmountBaseCurrency())
                     .time(betResponse.getTimestamp())
                     .cashOut(betResponse.getCashOutBaseCurrency())

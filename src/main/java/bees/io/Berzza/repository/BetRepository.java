@@ -14,7 +14,7 @@ public interface BetRepository extends JpaRepository<Bet,Long> {
 
 //    long countByGameIdAndUserId(Long gameId, String userId);
 
-    List<Bet> findAllByUserOrderByTimestampDesc(String user, PageRequest of);
+    List<Bet> findAllByUsernameOrderByTimestampDesc(String username, PageRequest of);
 
     default  List<Bet> getBets(){
         return GlobalGameState.getGameBets();
