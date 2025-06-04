@@ -19,7 +19,7 @@ public class GameGenerator {
         return max;
     }
 
-    // ✅ NOVA METODA — Samo rastući brojevi
+    // ✅ Samo rastući brojevi
     public static Game generateListFromMaxIncreasingOnly(double gameMultiplier) {
         Game game = new Game();
         game.setMaxMultiplier(gameMultiplier);
@@ -94,13 +94,25 @@ public class GameGenerator {
         return bd.doubleValue();
     }
 
+    // Nova logika za generisanje broja sa biasom ka manjim vrednostima i retkim velikim vrednostima
     public static double returnGameNumber() {
         int x = rand.nextInt(100);
         if (x % 33 == 0) {
-            return -1.0;
+            return -1.0;  // fail uslov
         }
-        double value = 0.01 + rand.nextDouble() * (1000 - 0.01); // sigurno <= 1000
-        return roundTheNumber(value);
+
+        double value;
+        double chance = rand.nextDouble();
+
+        if (chance < 0.85) {
+            // 85% šanse da dobijemo manje kvote (do 20) sa jakim biasom
+            value = Math.pow(rand.nextDouble(), 3) * 20;
+        } else {
+            // 15% šanse za veće kvote (do 1000), sa blažim biasom
+            value = Math.pow(rand.nextDouble(), 2) * 1000;
+        }
+
+        return roundTheNumber(0.01 + value);
     }
 
     public static double generateRandomDoubleBetweenRounded(double min, double max) {
