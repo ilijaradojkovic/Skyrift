@@ -2,42 +2,36 @@ game:
   gameToGenerate: 10
 
 server:
-  port: ${PORT:8000}
-
+  port: ${PORT:8000} # Deploy platforma (npr. Heroku, Render) postaviće PORT
 
 resilience4j:
   retry:
     instances:
       gameController:
-        maxAttempts: 5  # Maximum number of attempts
-        waitDuration: 500ms  # Wait duration between attempts
+        maxAttempts: 5
+        waitDuration: 500ms
         retryExceptions:
-          - org.springframework.web.client.HttpServerErrorException  # Exception to retry on
-
+          - org.springframework.web.client.HttpServerErrorException
 
   rate-limiter:
     instances:
       gameController:
-        limitForPeriod: 10 # The number of calls allowed in the given time period
-        limitForPeriodInMillis: 1000 # Time period in milliseconds
-        limitRefreshPeriod: 1000 # Time period for refreshing the limit
+        limitForPeriod: 10
+        limitForPeriodInMillis: 1000
+        limitRefreshPeriod: 1000
 
 cors:
   allowed:
-    origins: ${CORS_ALLOWED_ORIGINS:http://localhost:8000,http://localhost:8080,http://localhost:5173,https://plane-rykl.onrender.com,https://dane-keen-widely.ngrok-free.app}
+    origins: ${CORS_ALLOWED_ORIGINS:https://skyrift.com} # 👈 Ovde stavi frontend domen
 
 logging:
   pattern:
     level: "%5p [traceId=%X{traceId}, spanId=%X{spanId}]"
 
-
-
-
-
-
-
 spring:
 
+  application:
+    name: skyrift
 
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:skyrift}
@@ -56,18 +50,9 @@ spring:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
 
-
-
-
-
-  application:
-    name: skyrift
-
-
-
   rsocket:
     server:
-      host: ${R_SOCKET_HOST:localhost}
+      host: ${R_SOCKET_HOST:0.0.0.0} # 👈 u produkciji koristi 0.0.0.0, da prihvata spoljne konekcije
       mapping-path: /
       transport: websocket
       port: ${R_SOCKET_PORT:9000}
