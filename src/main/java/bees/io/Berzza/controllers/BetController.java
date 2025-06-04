@@ -38,23 +38,23 @@ public class BetController {
     private final WebClient webClient;
 
     //jedan socket za betovanje po useru
-    @MessageMapping("bet")
-    public Mono<BetResponse> bet(@Payload BetRequest betRequest) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        if (betRequest.betType() == BetType.BET) {
-            System.out.println("Place bet");
-            return betService.placeBet(betRequest);
-        } else if (betRequest.betType() == BetType.CANCEL) {
-            System.out.println("Cancel bet");
-            Mono<BetResponse> betResponseMono = betService.cancelBet(betRequest);
-
-            return  betResponseMono;
-        } else if (betRequest.betType() == BetType.CASHOUT){
-            System.out.println("Cash out bet");
-            return betService.cashOut(betRequest);
-        }
-          return Mono.empty();
-    }
-
+//    @MessageMapping("bet")
+//    public Mono<BetResponse> bet(@Payload BetRequest betRequest) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+//        if (betRequest.betType() == BetType.BET) {
+//            System.out.println("Place bet");
+//            return betService.placeBet(betRequest);
+//        } else if (betRequest.betType() == BetType.CANCEL) {
+//            System.out.println("Cancel bet");
+//            Mono<BetResponse> betResponseMono = betService.cancelBet(betRequest);
+//
+//            return  betResponseMono;
+//        } else if (betRequest.betType() == BetType.CASHOUT){
+//            System.out.println("Cash out bet");
+//            return betService.cashOut(betRequest);
+//        }
+//          return Mono.empty();
+//    }
+//
 
 
 
