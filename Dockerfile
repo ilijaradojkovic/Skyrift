@@ -10,4 +10,6 @@ FROM openjdk:17-jdk
 WORKDIR /app
 COPY --from=build /app/target/skyrift.jar skyrift.jar
 EXPOSE 8000
+EXPOSE 9000
+
 ENTRYPOINT ["java", "-jar", "skyrift.jar"]

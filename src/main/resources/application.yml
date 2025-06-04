@@ -67,13 +67,7 @@ spring:
 
   rsocket:
     server:
-      host: ${R_SOCKET_HOST:ws://localhost:9000}
-      #      ssl:
-      #        enabled: true
-      #        key-store-type: PKCS12
-      #        key-store: C:\Users\Ilija\Downloads\RSocket\rsocket-server.p12
-      #        key-store-password: password
-      #        key-alias: rsocket
+      host: ${R_SOCKET_HOST:localhost}
       mapping-path: /
       transport: websocket
       port: ${R_SOCKET_PORT:9000}
