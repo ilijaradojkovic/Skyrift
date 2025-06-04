@@ -22,7 +22,7 @@ resilience4j:
 
 cors:
   allowed:
-    origins: ${CORS_ALLOWED_ORIGINS:https://plane-rykl.onrender.com/} # 👈 Ovde stavi frontend domen
+    origins: ${CORS_ALLOWED_ORIGINS:https://plane-rykl.onrender.com} # 👈 Ovde stavi frontend domen
 
 logging:
   pattern:
