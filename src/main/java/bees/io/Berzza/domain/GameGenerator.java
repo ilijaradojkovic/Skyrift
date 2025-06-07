@@ -117,7 +117,8 @@ public class GameGenerator {
 
     public static double generateRandomDoubleBetweenRounded(double min, double max) {
         if (min > max) {
-            throw new IllegalArgumentException("Max must be greater than min");
+            return min;
+//            throw new IllegalArgumentException("Max must be greater than min");
         } else if (min == max) {
             return min;
         } else {
