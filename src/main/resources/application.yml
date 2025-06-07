@@ -35,8 +35,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:skyrift}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:root}
+    username: ${DB_USERNAME:ilija}
+    password: ${DB_PASSWORD:roor}
     driver-class-name: org.postgresql.Driver
 
   jpa:
