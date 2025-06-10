@@ -61,8 +61,9 @@ public class BetServiceImpl implements BetService {
 
             Bet bet = betMapper.mapToBet(UUID.randomUUID(), game, betRequest.username(), betRequest.amount(), betRequest.isAutoCashout(), betRequest.autoCashOutMultiplier());
 
-            GlobalGameState.getGameBets().add(bet);
             userService.removeFromBalance(betRequest.username(), betRequest.amount());
+            GlobalGameState.getGameBets().add(bet);
+
             System.out.println("BET SAVED " + bet);
 //            return casinoRest.cashIn(userToken, betRequest.amount())
 //                    .flatMap(userDTO -> {
